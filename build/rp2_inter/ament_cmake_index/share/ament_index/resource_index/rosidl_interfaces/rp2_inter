@@ -1,8 +1,0 @@
-action/AddDigit.action
-action/AddDigit.idl
-msg/Uid.idl
-msg/Uid.msg
-srv/Multy.idl
-srv/Multy.srv
-srv/Multy_Request.msg
-srv/Multy_Response.msg

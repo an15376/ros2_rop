@@ -1,0 +1,12 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rp2_inter/msg/Uid.msg
+// generated code does not contain a copyright notice
+
+
+module rp2_inter {
+  module msg {
+    struct Uid {
+      string uid;
+    };
+  };
+};

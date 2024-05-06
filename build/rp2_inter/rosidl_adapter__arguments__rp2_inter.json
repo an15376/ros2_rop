@@ -1,0 +1,8 @@
+{
+  "package_name": "rp2_inter",
+  "non_idl_tuples": [
+    "/home/kiki/ros2_rop/src/rp2_inter:msg/Uid.msg",
+    "/home/kiki/ros2_rop/src/rp2_inter:srv/Multy.srv",
+    "/home/kiki/ros2_rop/src/rp2_inter:action/AddDigit.action"
+  ]
+}

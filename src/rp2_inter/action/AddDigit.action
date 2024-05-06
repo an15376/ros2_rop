@@ -1,0 +1,5 @@
+string uid
+---
+int32[] result_uid
+---
+int32[] intermediate_uid

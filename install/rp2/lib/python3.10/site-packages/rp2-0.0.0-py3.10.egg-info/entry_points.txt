@@ -1,0 +1,4 @@
+[console_scripts]
+node1 = rp2.node1:main
+node2 = rp2.node2:main
+

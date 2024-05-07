@@ -11,16 +11,18 @@ from rp2_inter.action import AddDigit
 class MinSubCliAction(Node):
 
     def __init__(self):
-        super().__init__('min_subcli_action')
+        super().__init__('min_subcli_action') # 노드 이름 초기화
+        
+        # message subscription 생성
         self.subscription = self.create_subscription(Uid,'uid',self.listener_callback,10)
         
-        # Service client
+        # Service client 초기화
         self.client = self.create_client(Multy, 'multiply')
         while not self.client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
         self.req = Multy.Request()
         
-        # Action client
+        # Action client 초기화
         self._action_client = ActionClient(self, AddDigit, 'add_digit')
         
         # Parameter
@@ -29,6 +31,7 @@ class MinSubCliAction(Node):
     def listener_callback(self, msg):
         self.get_logger().info('Recieved: "%s"' % msg.uid)
 
+    # 서비스 요청 전송 함수
     def send_request(self, a, b):
         self.req.a = a
         self.req.b = b
@@ -37,6 +40,7 @@ class MinSubCliAction(Node):
 
         return self.future.result()
     
+    # action goal 전송 함수
     def send_goal(self):
 
         # Set parameters
@@ -84,15 +88,18 @@ def main(args=None):
     rclpy.init(args=args)
 
     minimal_subscriber_client_action = MinSubCliAction()
+    # service request 실행
     response = minimal_subscriber_client_action.send_request(int(sys.argv[1]), int(sys.argv[2]))
     minimal_subscriber_client_action.get_logger().info(
         'Result of multipy: %d * %d = %d' %
         (int(sys.argv[1]), int(sys.argv[2]), response.product))
     
+    # action goal 실행
     minimal_subscriber_client_action.send_goal()
 
-    rclpy.spin(minimal_subscriber_client_action)
-
+    rclpy.spin(minimal_subscriber_client_action) # node 실행
+    
+    # 노드 종료 및 ROS 2 shutdown 처리
     minimal_subscriber_client_action.destroy_node()
     rclpy.shutdown()
 
